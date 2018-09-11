@@ -6,14 +6,13 @@
     <title>Bomberman</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-    <script src="mapaMascara.js"></script>
-    <script src="Mapa.js"></script>
-    <script src="Jogador.js"></script>
-    <script src="Inimigo.js"></script>
-    <script src="Bomba.js"></script>
+    <script src="main.js"></script>
 </head>
 <body>
-
-<script src="bomberman.js"></script>
+    <canvas id="tela" width="200" height="200">Navegador não suportado!</canvas>
+    <button id="btnIniciar" onclick="pausar()">Iniciar</button>
+    <button id="btnNovo" onclick="reiniciar()">Novo jogo</button>
+    <p id="tecla"></p>
+    <p>A,S,D,W -> Mover<br>Barra de Espaço -> Liberar bomba</p>
 </body>
 </html>
