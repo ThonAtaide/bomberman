@@ -14,10 +14,11 @@ function Inimigo(x, y, imagem) {
 
 Inimigo.todos = new Array();
 
-Inimigo.desenharTodos = function (ctx) {
+Inimigo.desenharTodos = function (ctx) {	
 	var i;
 	for (i = 0; i < Inimigo.todos.length; i++) {
 		Inimigo.todos[i].desenhar(ctx);
+		
 	}
 };
 
@@ -31,6 +32,7 @@ this.adicionaDirecao(Jogador.cmdBai, 4);
 this.adicionaDirecao(0, 1);//Ficar parado
 var aleat = Math.round(Math.random() * (this.direcoes.length -1));
 this.direcaoAtual = this.direcoes[aleat];
+
 switch (this.direcaoAtual) {
 		case Jogador.cmdCim:
 		this.y--;
@@ -48,43 +50,34 @@ switch (this.direcaoAtual) {
 };
 
 this.adicionaDirecao = function (dir, vezes) {
-var nx = this.x;
-var ny = this.y;
-switch(dir) {
-case Jogador.cmdEsq:
-nx--;
-break;
-case Jogador.cmdDir:
-nx++;
-break;
-case Jogador.cmdCim:
-ny--;
-break;
-case Jogador.cmdBai:
-ny++;
-break;
-} //Fim do switch
+	var nx = this.x;
+	var ny = this.y;
+	switch(dir) {
+		case Jogador.cmdEsq: nx--; break;
+		case Jogador.cmdDir: nx++; break;
+		case Jogador.cmdCim: ny--; break;
+		case Jogador.cmdBai: ny++; break;
+	} //Fim do switch
 	
-	if (nx < 0 || ny < 0 || nx >= Mapa.colunas || ny >=
-Mapa.linhas) {
-return;
-}
-switch (Mapa.atual[ny][nx]) {
-case Mapa.PAREDE:
-case Mapa.TIJOLO:
-case Mapa.BOMBA:
-return;
-}
-var z;
-for (z = 0; z < vezes; z++) {
-this.direcoes.push(dir);
-}
+	if (nx < 0 || ny < 0 || nx >= Mapa.colunas || ny >=	Mapa.linhas) {
+		return;
+	}
+	switch (Mapa.atual[ny][nx]) {
+		case Mapa.PAREDE:
+		case Mapa.TIJOLO:
+		case Mapa.BOMBA:
+		return;
+	}
+	var z;
+	for (z = 0; z < vezes; z++) {
+		this.direcoes.push(dir);
+	}
 }; //Fim do adicionaDirecao()
 
 //Mover todos os inimigos: método estático!
 Inimigo.moverTodos = function() {
-var i;
-for (i = 0; i < Inimigo.todos.length; i++) {
-Inimigo.todos[i].mover();
-}
+	var i;
+	for (i = 0; i < Inimigo.todos.length; i++) {
+		Inimigo.todos[i].mover();
+	}
 };
