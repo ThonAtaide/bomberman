@@ -25,6 +25,22 @@ Mapa.carregar = function (canvas) {
     for (y = 0; y < mapaMascara.length; y++) { 
         Mapa.atual.push(mapaMascara[y].slice(0));
     }
+    
+    for (x = 0; x < Mapa.atual[y].length; x++) {
+        switch (Mapa.atual[y][x]) {
+            case Mapa.JOGADOR:
+                Jogador.x = x;
+                Jogador.y = y;
+                break;
+            case Mapa.INIMIGO:
+                var inimigoImg = new Image();
+                inimigoImg.src = "inimigo.png";
+                inimigoImg.onload = desenharTudo;
+                Inimigo.todos.push(new Inimigo(x, y, inimigoImg));
+            break;
+        }
+    }
+    
     Mapa.linhas = Mapa.atual.length;
     Mapa.colunas = Mapa.atual[0].length; 
     canvas.width = Mapa.colunas * Mapa.largura;
