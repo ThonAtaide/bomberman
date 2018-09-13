@@ -24,9 +24,7 @@ Mapa.carregar = function (canvas) {
     var y, x; 
     for (y = 0; y < mapaMascara.length; y++) { 
         Mapa.atual.push(mapaMascara[y].slice(0));
-    }
-    
-    for (x = 0; x < Mapa.atual[y].length; x++) {
+        for (x = 0; x < Mapa.atual[y].length; x++) {
         switch (Mapa.atual[y][x]) {
             case Mapa.JOGADOR:
                 Jogador.x = x;
@@ -39,6 +37,7 @@ Mapa.carregar = function (canvas) {
                 Inimigo.todos.push(new Inimigo(x, y, inimigoImg));
             break;
         }
+    }
     }
     
     Mapa.linhas = Mapa.atual.length;
