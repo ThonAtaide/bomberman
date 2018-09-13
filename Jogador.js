@@ -91,3 +91,15 @@ Jogador.mover = function () {
 	Jogador.proximoMov = null;
 };
 
+//Verifica se o Jogador morre (contato com inimigo)
+Jogador.verificaMorte = function() {
+var i;
+for (i = 0; i < Inimigo.todos.length; i++) {
+if (Jogador.x == Inimigo.todos[i].x &&
+Jogador.y == Inimigo.todos[i].y) {
+return true;
+}
+}
+return false;
+};
+
