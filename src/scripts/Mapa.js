@@ -1,5 +1,4 @@
 function Mapa(){
-
 }
 //Compreensão do conteúdo do mapa 
 Mapa.LIVRE = 0;

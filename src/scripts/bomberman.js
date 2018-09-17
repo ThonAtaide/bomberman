@@ -23,6 +23,7 @@ function reiniciar() {
   intervaloInimigos = intervaloJogador * 2;
   Bomba.todas.length = 0;
   Bomba.maxBombas = 1;
+  document.querySelector("p").focus();
 }
 
 function desenharTudo() {
@@ -40,7 +41,9 @@ document.onkeydown = function (evt) {
 }
 
 document.onkeydown = function (evt) {
-  Jogador.tratarTecla(evt);
+  if(tempoJogador !== null){
+    Jogador.tratarTecla(evt);
+  }
 }
 
 function pausar() {

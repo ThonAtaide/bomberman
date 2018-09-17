@@ -45,6 +45,7 @@ Jogador.tratarTecla = function (evt) {
 
 //Com base no último movimento solicitado, executa movimento
 Jogador.mover = function () {
+
 	var nx = -1;
 	var ny = -1;
 	switch (Jogador.proximoMov) {
