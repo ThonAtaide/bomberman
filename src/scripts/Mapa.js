@@ -49,17 +49,24 @@ Mapa.carregar = function (canvas) {
 Mapa.imgTijolo = new Image(); 
 Mapa.imgTijolo.src = "src/images/tijolo.png"; 
 
+Mapa.imgSolido = new Image();
+Mapa.imgSolido.src = "src/images/solid.png"; 
+
+Mapa.imgSolo = new Image();
+Mapa.imgSolo.src = "src/images/solo.jpg";
+
 Mapa.desenhar = function (ctx) { 
     if (Mapa.atual != null) { 
         var x, y; 
         for (y = 0; y < Mapa.linhas; y++) { 
             for (x = 0; x < Mapa.colunas; x++) { 
                 if (Mapa.atual[y][x] == Mapa.PAREDE) { 
-                    ctx.fillStyle = "#BBBBBB"; 
-                    ctx.fillRect(x * Mapa.largura, y * Mapa.largura, Mapa.largura, Mapa.largura); 
+                    ctx.drawImage(Mapa.imgSolido, x * Mapa.largura, y * Mapa.largura, Mapa.largura, Mapa.largura); 
                 } else {
                     if (Mapa.atual[y][x] ==  Mapa.TIJOLO) { 
                         ctx.drawImage(Mapa.imgTijolo, x * Mapa.largura, y * Mapa.largura, Mapa.largura, Mapa.largura); 
+                    } else {
+                        ctx.drawImage(Mapa.imgSolo, x * Mapa.largura, y * Mapa.largura, Mapa.largura, Mapa.largura); 
                     } 
                 }
             }

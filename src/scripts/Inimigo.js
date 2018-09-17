@@ -7,8 +7,8 @@ function Inimigo(x, y, imagem) {
 	this.direcaoAtual = 0;//Parado
 	
 	this.desenhar = function (ctx) {
-		ctx.drawImage(this.imagem, this.x * Mapa.largura,
-			this.y * Mapa.largura, Mapa.largura, Mapa.largura);
+		ctx.drawImage(this.imagem, this.x * Mapa.largura + 45, this.y *
+			Mapa.largura + 45, Mapa.largura - 90, Mapa.largura - 90);
 	};
 
 	this.mover = function () {

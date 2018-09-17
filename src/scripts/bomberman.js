@@ -6,7 +6,7 @@ var tempoInimigos = null;
 var canvas = document.getElementById("tela");
 var ctx = canvas.getContext("2d");
 
-Bomba.som = document.getElementById("sndBomba");
+Bomba.som = document.querySelector("audio");
 
 function reiniciar() {
   if (tempoJogador != null) {

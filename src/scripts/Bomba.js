@@ -100,8 +100,8 @@ function Bomba(x, y) {
     if (this.cicloAtual > this.ciclos) {
       if (this.cicloAtual == this.ciclos + 1 && Bomba.som !=
       null) {
-      //Bomba.som.currentTime = 0;
-      //Bomba.som.play();
+        Bomba.som.currentTime = 0;
+        Bomba.som.play();
       }
       this.explodir();
       //console.log('explodir')
