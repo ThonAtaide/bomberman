@@ -9,6 +9,7 @@ var ctx = canvas.getContext("2d");
 Bomba.som = document.querySelector("audio");
 
 function reiniciar() {
+  Inimigo.todos = [];
   if (tempoJogador != null) {
     pausar();
   }

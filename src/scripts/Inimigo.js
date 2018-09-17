@@ -71,10 +71,8 @@ Inimigo.desenharTodos = function (ctx) {
 	var i;
 	for (i = 0; i < Inimigo.todos.length; i++) {
 		Inimigo.todos[i].desenhar(ctx);
-		
 	}
 };
-
 
 
 //Mover todos os inimigos: método estático!

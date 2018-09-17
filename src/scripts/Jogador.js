@@ -65,7 +65,6 @@ Jogador.mover = function () {
 	if (Jogador.plantarBomba) {
 		if (Bomba.todas.length < Bomba.maxBombas) {
 			Bomba.todas.push(new Bomba(this.x, this.y));
-			console.log(Bomba.todas)
 		}
 		Jogador.plantarBomba = false;
 	}

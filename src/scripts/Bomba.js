@@ -95,7 +95,6 @@ function Bomba(x, y) {
   }; //Fecha o método desenhar()
 
   this.executarCiclo = function () {
-    console.log('ciclo');
     this.cicloAtual++;
     if (this.cicloAtual > this.ciclos) {
       if (this.cicloAtual == this.ciclos + 1 && Bomba.som !=
@@ -201,6 +200,9 @@ function Bomba(x, y) {
     while (i < Inimigo.todos.length) {
       if (Inimigo.todos[i].x == x && Inimigo.todos[i].y == y) {
         Inimigo.todos.splice(i, 1);
+        if(Inimigo.todos.length === 0){
+          console.log('Fim de jogo')
+        }
       } else {
         i++;
       }
