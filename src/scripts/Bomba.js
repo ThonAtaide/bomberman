@@ -43,7 +43,6 @@ function Bomba(x, y) {
           }
         } //Fecha if (ny >= 0)
       } //Fecha for (r)
-      //Para baixo
   
       for (r = 1; r <= this.raio; r++) {
         ny = this.y + r;
@@ -112,6 +111,17 @@ function Bomba(x, y) {
     //Para cima
     continua = false;
     for (r = 1; r <= this.raio; r++) {
+      ny = this.y - r;
+      if (ny >= 0) {
+        continua = this.verificaEstrago(this.x, ny);
+      }
+      if (!continua) {
+        break;
+      }
+    } //Fim do for
+
+    //Explode no meio
+    for (r = 0 ; r <= this.raio; r++) {
       ny = this.y - r;
       if (ny >= 0) {
         continua = this.verificaEstrago(this.x, ny);

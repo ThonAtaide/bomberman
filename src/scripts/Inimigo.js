@@ -67,7 +67,7 @@ function Inimigo(x, y, imagem) {
 
 Inimigo.todos = new Array();
 
-Inimigo.desenharTodos = function (ctx) {	
+Inimigo.desenharTodos = ctx => {	
 	var i;
 	for (i = 0; i < Inimigo.todos.length; i++) {
 		Inimigo.todos[i].desenhar(ctx);
