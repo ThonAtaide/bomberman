@@ -1,11 +1,12 @@
+
 function Bomba(x, y) {
   this.x = x;
   this.y = y;
   this.ciclos = Bomba.nCiclosAtual;
   this.cicloAtual = 0;
   this.raio = Bomba.raioAtual;
-  Mapa.atual[y][x] = Mapa.BOMBA;
 
+  Mapa.atual[y][x] = Mapa.BOMBA;
   this.desenhar = function(ctx) {
     var raio = Mapa.largura / 2;
     var prop = 0.5 + ((0.5 * this.cicloAtual) / this.ciclos);
@@ -180,11 +181,26 @@ function Bomba(x, y) {
     if (Mapa.atual[y][x] == Mapa.PAREDE) {
       return false;
     }
+
+    if (Mapa.atual[y][x] == Mapa.ITEMBOMBA) {
+      return false;
+    }
+
     //Se encontrar um tijolo, quebra e para
     if (Mapa.atual[y][x] == Mapa.TIJOLO) {
       if (this.cicloAtual > this.ciclos +
       Bomba.nCiclosPos) {
-        Mapa.atual[y][x] = Mapa.LIVRE;
+        var random = Math.floor(Math.random() * (2 - 0) + 0);
+        if (random != 0){
+          Mapa.atual[y][x] = Mapa.LIVRE;
+        } else {
+          Mapa.atual[y][x] = Mapa.ITEMBOMBA;
+          Bomba.maxBombas++;
+          setTimeout(function(){ Mapa.atual[y][x] = Mapa.LIVRE; }, 3000);         
+          
+          nBombas.innerHTML = `<li class="bomba-item">Bombas: </li> ${Bomba.maxBombas}`;
+
+        }
       }
       return false;
     }
