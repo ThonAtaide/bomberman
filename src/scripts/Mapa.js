@@ -7,6 +7,7 @@ Mapa.JOGADOR = 2;
 Mapa.TIJOLO = 3;
 Mapa.INIMIGO = 4;
 Mapa.BOMBA = 5;
+Mapa.ITEMBOMBA = 6;
 
 //linhas e colunas existentes no mapa atualmente
 
@@ -48,6 +49,9 @@ Mapa.carregar = function (canvas) {
 Mapa.imgTijolo = new Image(); 
 Mapa.imgTijolo.src = "src/images/tijolo.png"; 
 
+Mapa.imgItemBomba = new Image(); 
+Mapa.imgItemBomba.src = "src/images/bomba.png"; 
+
 Mapa.imgSolido = new Image();
 Mapa.imgSolido.src = "src/images/solid.png"; 
 
@@ -65,7 +69,12 @@ Mapa.desenhar = function (ctx) {
                     if (Mapa.atual[y][x] ==  Mapa.TIJOLO) { 
                         ctx.drawImage(Mapa.imgTijolo, x * Mapa.largura, y * Mapa.largura, Mapa.largura, Mapa.largura); 
                     } else {
-                        ctx.drawImage(Mapa.imgSolo, x * Mapa.largura, y * Mapa.largura, Mapa.largura, Mapa.largura); 
+                        if (Mapa.atual[y][x] == Mapa.ITEMBOMBA){
+                            ctx.drawImage(Mapa.imgItemBomba, x * Mapa.largura, y * Mapa.largura, Mapa.largura, Mapa.largura);
+                            
+                        } else { 
+                            ctx.drawImage(Mapa.imgSolo, x * Mapa.largura, y * Mapa.largura, Mapa.largura, Mapa.largura);
+                        } 
                     } 
                 }
             }
