@@ -2,6 +2,8 @@ var intervaloJogador = 200;
 var intervaloInimigos = 400;
 var tempoJogador = null;
 var tempoInimigos = null;
+var nBombas = document.querySelector('#bomb');
+var ul = document.createElement('ul');
 
 var canvas = document.getElementById("tela");
 var ctx = canvas.getContext("2d");
@@ -23,6 +25,7 @@ function reiniciar() {
   intervaloInimigos = intervaloJogador * 2;
   Bomba.todas.length = 0;
   Bomba.maxBombas = 1;
+  nBombas.innerHTML = '<li>Bombas: 1</li>'
   document.querySelector("p").focus();
 }
 
@@ -98,5 +101,7 @@ function gameOver() {
     //this.explodir();
   }
 }; */
+
+
 
 
