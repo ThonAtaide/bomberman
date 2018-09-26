@@ -22,23 +22,82 @@ Mapa.atual = null;
 Mapa.carregar = function (canvas) { 
     Mapa.atual = new Array(); 
     var y, x; 
-    for (y = 0; y < mapaMascara.length; y++) { 
-        Mapa.atual.push(mapaMascara[y].slice(0));
-        for (x = 0; x < Mapa.atual[y].length; x++) {
-            switch (Mapa.atual[y][x]) {
-                case Mapa.JOGADOR:
-                    Jogador.x = x;
-                    Jogador.y = y;
+
+    if(vitorias === 0){
+        for (y = 0; y < mapaMascara0.length; y++) { 
+            Mapa.atual.push(mapaMascara0[y].slice(0));
+            for (x = 0; x < Mapa.atual[y].length; x++) {
+                switch (Mapa.atual[y][x]) {
+                    case Mapa.JOGADOR:
+                        Jogador.x = x;
+                        Jogador.y = y;
+                        break;
+                    case Mapa.INIMIGO:
+                        var inimigoImg = new Image();
+                        inimigoImg.src = "src/images/inimigo.png";
+                        inimigoImg.onload = desenharTudo;
+                        Inimigo.todos.push(new Inimigo(x, y, inimigoImg));
                     break;
-                case Mapa.INIMIGO:
-                    var inimigoImg = new Image();
-                    inimigoImg.src = "src/images/inimigo.png";
-                    inimigoImg.onload = desenharTudo;
-                    Inimigo.todos.push(new Inimigo(x, y, inimigoImg));
-                break;
+                }
+            }
+        }
+    } else if(vitorias === 1){
+        for (y = 0; y < mapaMascara1.length; y++) { 
+            Mapa.atual.push(mapaMascara1[y].slice(0));
+            for (x = 0; x < Mapa.atual[y].length; x++) {
+                switch (Mapa.atual[y][x]) {
+                    case Mapa.JOGADOR:
+                        Jogador.x = x;
+                        Jogador.y = y;
+                        break;
+                    case Mapa.INIMIGO:
+                        var inimigoImg = new Image();
+                        inimigoImg.src = "src/images/inimigo.png";
+                        inimigoImg.onload = desenharTudo;
+                        Inimigo.todos.push(new Inimigo(x, y, inimigoImg));
+                    break;
+                }
+            }
+        }
+    } else if (vitorias === 2){
+        for (y = 0; y < mapaMascara2.length; y++) { 
+            Mapa.atual.push(mapaMascara2[y].slice(0));
+            for (x = 0; x < Mapa.atual[y].length; x++) {
+                switch (Mapa.atual[y][x]) {
+                    case Mapa.JOGADOR:
+                        Jogador.x = x;
+                        Jogador.y = y;
+                        break;
+                    case Mapa.INIMIGO:
+                        var inimigoImg = new Image();
+                        inimigoImg.src = "src/images/inimigo.png";
+                        inimigoImg.onload = desenharTudo;
+                        Inimigo.todos.push(new Inimigo(x, y, inimigoImg));
+                    break;
+                }
+            }
+        }
+    } else if(vitorias === 3){
+        for (y = 0; y < mapaMascara3.length; y++) { 
+            Mapa.atual.push(mapaMascara3[y].slice(0));
+            for (x = 0; x < Mapa.atual[y].length; x++) {
+                switch (Mapa.atual[y][x]) {
+                    case Mapa.JOGADOR:
+                        Jogador.x = x;
+                        Jogador.y = y;
+                        break;
+                    case Mapa.INIMIGO:
+                        var inimigoImg = new Image();
+                        inimigoImg.src = "src/images/inimigo.png";
+                        inimigoImg.onload = desenharTudo;
+                        Inimigo.todos.push(new Inimigo(x, y, inimigoImg));
+                    break;
+                }
             }
         }
     }
+
+    
     
     Mapa.linhas = Mapa.atual.length;
     Mapa.colunas = Mapa.atual[0].length; 
@@ -70,7 +129,8 @@ Mapa.desenhar = function (ctx) {
                         ctx.drawImage(Mapa.imgTijolo, x * Mapa.largura, y * Mapa.largura, Mapa.largura, Mapa.largura); 
                     } else {
                         if (Mapa.atual[y][x] == Mapa.ITEMBOMBA){
-                            ctx.drawImage(Mapa.imgItemBomba, x * Mapa.largura, y * Mapa.largura, Mapa.largura, Mapa.largura);
+                            ctx.drawImage(Mapa.imgItemBomba, x * Mapa.largura, y *
+                                Mapa.largura, Mapa.largura, Mapa.largura);
                             
                         } else { 
                             ctx.drawImage(Mapa.imgSolo, x * Mapa.largura, y * Mapa.largura, Mapa.largura, Mapa.largura);

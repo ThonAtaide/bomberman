@@ -190,16 +190,15 @@ function Bomba(x, y) {
     if (Mapa.atual[y][x] == Mapa.TIJOLO) {
       if (this.cicloAtual > this.ciclos +
       Bomba.nCiclosPos) {
-        var random = Math.floor(Math.random() * (2 - 0) + 0);
+        var random = Math.floor(Math.random() * (10 - 0) + 0);
         if (random != 0){
           Mapa.atual[y][x] = Mapa.LIVRE;
         } else {
           Mapa.atual[y][x] = Mapa.ITEMBOMBA;
           Bomba.maxBombas++;
-          setTimeout(function(){ Mapa.atual[y][x] = Mapa.LIVRE; }, 3000);         
-          
-          nBombas.innerHTML = `<li class="bomba-item">Bombas: </li> ${Bomba.maxBombas}`;
-
+          setTimeout(function(){ Mapa.atual[y][x] = Mapa.LIVRE; }, 2000);         
+          let nBombasSpan = document.querySelector('#bombas');
+          nBombasSpan.innerHTML = `${desenharBombas(Bomba.maxBombas)}`;
         }
       }
       return false;
@@ -226,8 +225,16 @@ function Bomba(x, y) {
     while (i < Inimigo.todos.length) {
       if (Inimigo.todos[i].x == x && Inimigo.todos[i].y == y) {
         Inimigo.todos.splice(i, 1);
+        nInimigos++;
+        const placar = document.querySelector('#placar');
+        placar.textContent = nInimigos;
         if(Inimigo.todos.length === 0){
-          console.log('Fim de jogo')
+          vitorias++
+          let placar = nInimigos;
+          setTimeout(() => {
+            reiniciar(placar);
+          }, 1500);
+          
         }
       } else {
         i++;
@@ -244,6 +251,8 @@ Bomba.maxBombas = 1; //Valor definido no "novo jogo"
 Bomba.nCiclosAtual = 15;
 Bomba.raioAtual = 2;
 Bomba.nCiclosPos = 2;
+Bomba.imgFogo = new Image();
+Bomba.imgFogo.src = "src/images/fire.png";
 
 Bomba.desenharTodas = function (ctx) {
   var i;
@@ -259,4 +268,14 @@ Bomba.executarTodosCiclos = function () {
   }
 };
 
+const desenharBombas = nBombas => {
+  const imgBomba = 'src/images/minbomba.png'
+  let html = ``;
 
+  for(let i=0; i < nBombas; i++){
+    html += `<img src="${imgBomba}" />`;
+  }
+
+  console.log(html)
+  return html;
+}

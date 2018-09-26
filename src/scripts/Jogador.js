@@ -3,6 +3,7 @@ function Jogador() {
 
 Jogador.x = -1;
 Jogador.y = -1;
+Jogador.som = null;
 
 Jogador.img = new Image();
 Jogador.img.src = "src/images/jogador.png";
@@ -11,8 +12,8 @@ Jogador.desenhar = function (ctx) {
 /* 	ctx.fillStyle = "#00BBBB";
 	ctx.fillRect(Jogador.x * Mapa.largura + 2, Jogador.y *
 		Mapa.largura + 2, Mapa.largura - 4, Mapa.largura - 4);  */
-	ctx.drawImage(Jogador.img, Jogador.x * Mapa.largura + 60, Jogador.y *
-		Mapa.largura + 60, Mapa.largura - 120, Mapa.largura - 120); 
+	ctx.drawImage(Jogador.img, Jogador.x * Mapa.largura + 35, Jogador.y *
+		Mapa.largura + 35, Mapa.largura - 65, Mapa.largura - 76); 
 };
 
 //Configurações de teclas para o Jogador

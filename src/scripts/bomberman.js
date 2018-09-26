@@ -3,14 +3,27 @@ var intervaloInimigos = 400;
 var tempoJogador = null;
 var tempoInimigos = null;
 var nBombas = document.querySelector('#bomb');
-var ul = document.createElement('ul');
+var ul = document.createElement('div');
+var vitorias = 0;
+var nInimigos;
 
 var canvas = document.getElementById("tela");
 var ctx = canvas.getContext("2d");
 
 Bomba.som = document.querySelector("audio");
+const tema = document.querySelector("#sndTheme");
+Jogador.som = document.querySelector("#sndDeath");
+
+let splash = new Image();
+splash.src = "src/images/splash.png";
+let gameover = new Image();
+gameover.src = "src/images/gameover.png"
 
 function reiniciar() {
+  if(vitorias === 0) {
+    nInimigos = 0;
+  }
+  tema.currentTime = 0;
   Inimigo.todos = [];
   if (tempoJogador != null) {
     pausar();
@@ -19,14 +32,14 @@ function reiniciar() {
   intervaloInimigos = intervaloJogador * 2;
   Mapa.carregar(canvas);
   desenharTudo();
-  document.getElementById("btnIniciar").disabled = false;
+  /* document.getElementById("btnIniciar").disabled = false; */
+  document.getElementById("btnIniciar").classList.remove('disabled');
   document.getElementById("btnIniciar").innerHTML = "Iniciar";
   intervaloJogador = 200;
   intervaloInimigos = intervaloJogador * 2;
   Bomba.todas.length = 0;
   Bomba.maxBombas = 1;
-  nBombas.innerHTML = '<li>Bombas: 1</li>'
-  document.querySelector("p").focus();
+  nBombas.innerHTML = `<p class="bomba-placar"> Bombas: <span id="bombas"><img src="src/images/minbomba.png" /></span> Placar: <span id="placar">${nInimigos}</span></p>`
 }
 
 function desenharTudo() {
@@ -35,6 +48,9 @@ function desenharTudo() {
   Bomba.desenharTodas(ctx);
   Jogador.desenhar(ctx);
   Inimigo.desenharTodos(ctx);
+    ctx.drawImage(splash, splash.x * Mapa.largura +120, splash.y *
+      Mapa.largura + 120, Mapa.largura +550, Mapa.largura + 350);
+/*       isFirst = false; */
 }
 reiniciar();
 
@@ -51,6 +67,8 @@ document.onkeydown = function (evt) {
 
 function pausar() {
   if (tempoJogador == null) {
+    splash = new Image();
+    tema.play();
     tempoJogador = setInterval("atualizaJogador()",
     intervaloJogador);
     tempoInimigos = setInterval("atualizaInimigos()",
@@ -63,6 +81,7 @@ function pausar() {
     tempoInimigos = null;
     document.getElementById("btnIniciar").innerHTML =
     "Continuar";
+    tema.pause();
   }
 }
 
@@ -83,25 +102,16 @@ function atualizaInimigos() {
   }
 }
 
-function gameOver() {
+ function gameOver() {
+  ctx.drawImage(gameover, gameover.x * Mapa.largura +270, gameover.y *
+    Mapa.largura + 200, Mapa.largura +275, Mapa.largura + 175);
+  Jogador.som.currentTime = 0;
+  Jogador.som.play();
   if (tempoJogador != null) {
     pausar();
-  }
-  document.getElementById("btnIniciar").disabled = true;
-}
-
-/* this.executarCiclo = function () {
-  this.cicloAtual++;
-  if (this.cicloAtual > this.ciclos) {
-    if (this.cicloAtual == this.ciclos + 1 && Bomba.som !=
-    null) {
-      //Bomba.som.currentTime = 0;
-      //Bomba.som.play();
-    }
-    //this.explodir();
-  }
-}; */
-
+  } 
+  document.getElementById("btnIniciar").classList.add('disabled'); 
+} 
 
 
 
