@@ -23,6 +23,7 @@ function reiniciar() {
   if(vitorias === 0) {
     nInimigos = 0;
   }
+  Bomba.maxBombas = 1 + Math.floor(nInimigos/10);
   tema.currentTime = 0;
   Inimigo.todos = [];
   if (tempoJogador != null) {
@@ -38,8 +39,10 @@ function reiniciar() {
   intervaloJogador = 200;
   intervaloInimigos = intervaloJogador * 2;
   Bomba.todas.length = 0;
-  Bomba.maxBombas = 1;
-  nBombas.innerHTML = `<p class="bomba-placar"> Bombas: <span id="bombas"><img src="src/images/minbomba.png" /></span> Placar: <span id="placar">${nInimigos}</span></p>`
+  nBombas.innerHTML = `<p class="bomba-placar"> Bombas: <span id="bombas"><img src="src/images/minbomba.png" /></span> Placar: <span id="placar">${nInimigos}</span></p>`;
+
+  let nBombasSpan = document.querySelector('#bombas');
+  nBombasSpan.innerHTML = `${desenharBombas(Bomba.maxBombas)}`;
 }
 
 function desenharTudo() {
@@ -103,14 +106,14 @@ function atualizaInimigos() {
 }
 
  function gameOver() {
-  ctx.drawImage(gameover, gameover.x * Mapa.largura +270, gameover.y *
+  /* ctx.drawImage(gameover, gameover.x * Mapa.largura +270, gameover.y *
     Mapa.largura + 200, Mapa.largura +275, Mapa.largura + 175);
   Jogador.som.currentTime = 0;
   Jogador.som.play();
   if (tempoJogador != null) {
     pausar();
   } 
-  document.getElementById("btnIniciar").classList.add('disabled'); 
+  document.getElementById("btnIniciar").classList.add('disabled');  */
 } 
 
 

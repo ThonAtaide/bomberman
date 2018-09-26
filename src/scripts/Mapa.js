@@ -1,3 +1,5 @@
+const NMAPAS = 4;
+
 function Mapa(){
 }
 //Compreensão do conteúdo do mapa 
@@ -21,83 +23,16 @@ Mapa.atual = null;
 
 Mapa.carregar = function (canvas) { 
     Mapa.atual = new Array(); 
-    var y, x; 
 
-    if(vitorias === 0){
-        for (y = 0; y < mapaMascara0.length; y++) { 
-            Mapa.atual.push(mapaMascara0[y].slice(0));
-            for (x = 0; x < Mapa.atual[y].length; x++) {
-                switch (Mapa.atual[y][x]) {
-                    case Mapa.JOGADOR:
-                        Jogador.x = x;
-                        Jogador.y = y;
-                        break;
-                    case Mapa.INIMIGO:
-                        var inimigoImg = new Image();
-                        inimigoImg.src = "src/images/inimigo.png";
-                        inimigoImg.onload = desenharTudo;
-                        Inimigo.todos.push(new Inimigo(x, y, inimigoImg));
-                    break;
-                }
-            }
-        }
-    } else if(vitorias === 1){
-        for (y = 0; y < mapaMascara1.length; y++) { 
-            Mapa.atual.push(mapaMascara1[y].slice(0));
-            for (x = 0; x < Mapa.atual[y].length; x++) {
-                switch (Mapa.atual[y][x]) {
-                    case Mapa.JOGADOR:
-                        Jogador.x = x;
-                        Jogador.y = y;
-                        break;
-                    case Mapa.INIMIGO:
-                        var inimigoImg = new Image();
-                        inimigoImg.src = "src/images/inimigo.png";
-                        inimigoImg.onload = desenharTudo;
-                        Inimigo.todos.push(new Inimigo(x, y, inimigoImg));
-                    break;
-                }
-            }
-        }
-    } else if (vitorias === 2){
-        for (y = 0; y < mapaMascara2.length; y++) { 
-            Mapa.atual.push(mapaMascara2[y].slice(0));
-            for (x = 0; x < Mapa.atual[y].length; x++) {
-                switch (Mapa.atual[y][x]) {
-                    case Mapa.JOGADOR:
-                        Jogador.x = x;
-                        Jogador.y = y;
-                        break;
-                    case Mapa.INIMIGO:
-                        var inimigoImg = new Image();
-                        inimigoImg.src = "src/images/inimigo.png";
-                        inimigoImg.onload = desenharTudo;
-                        Inimigo.todos.push(new Inimigo(x, y, inimigoImg));
-                    break;
-                }
-            }
-        }
-    } else if(vitorias === 3){
-        for (y = 0; y < mapaMascara3.length; y++) { 
-            Mapa.atual.push(mapaMascara3[y].slice(0));
-            for (x = 0; x < Mapa.atual[y].length; x++) {
-                switch (Mapa.atual[y][x]) {
-                    case Mapa.JOGADOR:
-                        Jogador.x = x;
-                        Jogador.y = y;
-                        break;
-                    case Mapa.INIMIGO:
-                        var inimigoImg = new Image();
-                        inimigoImg.src = "src/images/inimigo.png";
-                        inimigoImg.onload = desenharTudo;
-                        Inimigo.todos.push(new Inimigo(x, y, inimigoImg));
-                    break;
-                }
-            }
-        }
+    if (vitorias%NMAPAS === 0) {
+        Mapa.montaMapa(mapaMascara0);
+    } else if (vitorias%NMAPAS === 1) {
+        Mapa.montaMapa(mapaMascara1);
+    } else if (vitorias%NMAPAS === 2) {
+        Mapa.montaMapa(mapaMascara2);
+    } else if (vitorias%NMAPAS === 3) {
+        Mapa.montaMapa(mapaMascara3);
     }
-
-    
     
     Mapa.linhas = Mapa.atual.length;
     Mapa.colunas = Mapa.atual[0].length; 
@@ -141,3 +76,24 @@ Mapa.desenhar = function (ctx) {
         }
     }
 };
+
+Mapa.montaMapa = mapa => {
+    var y, x; 
+    for (y = 0; y < mapa.length; y++) { 
+        Mapa.atual.push(mapa[y].slice(0));
+        for (x = 0; x < Mapa.atual[y].length; x++) {
+            switch (Mapa.atual[y][x]) {
+                case Mapa.JOGADOR:
+                    Jogador.x = x;
+                    Jogador.y = y;
+                    break;
+                case Mapa.INIMIGO:
+                    var inimigoImg = new Image();
+                    inimigoImg.src = "src/images/inimigo.png";
+                    inimigoImg.onload = desenharTudo;
+                    Inimigo.todos.push(new Inimigo(x, y, inimigoImg));
+                break;
+            }
+        }
+    }
+}
