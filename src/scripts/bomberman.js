@@ -10,7 +10,7 @@ var nInimigos;
 var canvas = document.getElementById("tela");
 var ctx = canvas.getContext("2d");
 
-Bomba.som = document.querySelector("audio");
+Bomba.som = document.querySelector("#sndBomba");
 const tema = document.querySelector("#sndTheme");
 Jogador.som = document.querySelector("#sndDeath");
 
