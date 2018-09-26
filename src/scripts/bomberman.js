@@ -39,7 +39,7 @@ function reiniciar() {
   intervaloJogador = 200;
   intervaloInimigos = intervaloJogador * 2;
   Bomba.todas.length = 0;
-  nBombas.innerHTML = `<p class="bomba-placar"> Bombas: <span id="bombas"><img src="src/images/minbomba.png" /></span> Placar: <span id="placar">${nInimigos}</span></p>`;
+  nBombas.innerHTML = `<p class="bomba-placar"> Bombas Disponíveis: <span id="bombas"><img src="src/images/minbomba.png" /></span> Placar: <span id="placar">${nInimigos}</span></p>`;
 
   let nBombasSpan = document.querySelector('#bombas');
   nBombasSpan.innerHTML = `${desenharBombas(Bomba.maxBombas)}`;
@@ -57,14 +57,15 @@ function desenharTudo() {
 }
 reiniciar();
 
-document.onkeydown = function (evt) {
-  document.getElementById("tecla").innerHTML =
-  evt.keyCode;
-}
 
 document.onkeydown = function (evt) {
-  if(tempoJogador !== null){
+  if (tempoJogador !== null) {
     Jogador.tratarTecla(evt);
+  } else {
+    if(evt.keyCode === 90){ //se apertar Z
+      pausar(); //despausa o jogo
+      evt.preventDefault();
+    }
   }
 }
 
@@ -83,7 +84,7 @@ function pausar() {
     clearInterval(tempoInimigos);
     tempoInimigos = null;
     document.getElementById("btnIniciar").innerHTML =
-    "Continuar";
+    "Continuar (Z)";
     tema.pause();
   }
 }
@@ -106,14 +107,14 @@ function atualizaInimigos() {
 }
 
  function gameOver() {
-  /* ctx.drawImage(gameover, gameover.x * Mapa.largura +270, gameover.y *
+  ctx.drawImage(gameover, gameover.x * Mapa.largura +270, gameover.y *
     Mapa.largura + 200, Mapa.largura +275, Mapa.largura + 175);
   Jogador.som.currentTime = 0;
   Jogador.som.play();
   if (tempoJogador != null) {
     pausar();
   } 
-  document.getElementById("btnIniciar").classList.add('disabled');  */
+  document.getElementById("btnIniciar").classList.add('disabled');
 } 
 
 

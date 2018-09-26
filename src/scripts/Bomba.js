@@ -190,7 +190,7 @@ function Bomba(x, y) {
     if (Mapa.atual[y][x] == Mapa.TIJOLO) {
       if (this.cicloAtual > this.ciclos +
       Bomba.nCiclosPos) {
-        var random = Math.floor(Math.random() * (2 - 0) + 0);
+        var random = Math.floor(Math.random() * 10);
         if (random != 0){
           Mapa.atual[y][x] = Mapa.LIVRE;
         } else {
@@ -276,6 +276,5 @@ const desenharBombas = nBombas => {
     html += `<img src="${imgBomba}" />`;
   }
 
-  console.log(html)
   return html;
 }
