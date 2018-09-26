@@ -61,11 +61,6 @@ reiniciar();
 document.onkeydown = function (evt) {
   if (tempoJogador !== null) {
     Jogador.tratarTecla(evt);
-  } else {
-    if(evt.keyCode === 90){ //se apertar Z
-      pausar(); //despausa o jogo
-      evt.preventDefault();
-    }
   }
 }
 
@@ -84,7 +79,7 @@ function pausar() {
     clearInterval(tempoInimigos);
     tempoInimigos = null;
     document.getElementById("btnIniciar").innerHTML =
-    "Continuar (Z)";
+    "Continuar";
     tema.pause();
   }
 }
