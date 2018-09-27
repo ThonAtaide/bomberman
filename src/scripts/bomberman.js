@@ -51,7 +51,7 @@ function desenharTudo() {
   Bomba.desenharTodas(ctx);
   Jogador.desenhar(ctx);
   Inimigo.desenharTodos(ctx);
-    ctx.drawImage(splash, splash.x * Mapa.largura +120, splash.y *
+    ctx.drawImage(splash, splash.x * Mapa.largura +130, splash.y *
       Mapa.largura + 120, Mapa.largura +550, Mapa.largura + 350);
 /*       isFirst = false; */
 }
@@ -69,9 +69,9 @@ function pausar() {
     splash = new Image();
     tema.play();
     tempoJogador = setInterval("atualizaJogador()",
-    intervaloJogador);
+    (intervaloJogador) - vitorias*10);
     tempoInimigos = setInterval("atualizaInimigos()",
-    intervaloInimigos);
+    (intervaloInimigos) - vitorias*50);
     document.getElementById("btnIniciar").innerHTML = "Pausar";
    } else {
     clearInterval(tempoJogador);
